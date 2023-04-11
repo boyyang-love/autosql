@@ -1,0 +1,10 @@
+exts:
+    - xlsx
+    - name
+fields:
+    - name
+    - age
+    - sex
+    - time
+    - files
+schema: boyyang
