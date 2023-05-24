@@ -22,7 +22,12 @@ func AnalyzeExcel(name string, pat string) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+	}(file)
 
 	//打开当前目录excle文件
 	wd, err := os.Getwd()
@@ -31,7 +36,12 @@ func AnalyzeExcel(name string, pat string) {
 		fmt.Println(err.Error())
 		return
 	}
-	defer f.Close()
+	defer func(f *excelize.File) {
+		err := f.Close()
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+	}(f)
 
 	//读取excel文件内容
 	rows, err := f.GetRows("Sheet1")

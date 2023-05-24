@@ -1,6 +1,5 @@
 exts:
-    - xlsx
-    - name
+    - .xlsl
 fields:
     - name
     - age

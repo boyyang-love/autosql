@@ -1,4 +1,4 @@
-package getRunDir
+package runDir
 
 import (
 	"os"
@@ -9,7 +9,7 @@ import (
 
 func RunDir() string {
 	// 如果是开发环境 使用当前路径
-	if os.Getenv("active") == "dev" {
+	if os.Getenv("ACTIVE") == "dev" {
 		return "."
 	}
 

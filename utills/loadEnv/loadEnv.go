@@ -1,25 +1,25 @@
 package loadEnv
 
 import (
-	"autoSql-cobra/utills/getRunDir"
+	"autoSql-cobra/utills/runDir"
 	"fmt"
 	"github.com/joho/godotenv"
 	"os"
 )
 
 func LoadEnv() (err error) {
-	if err = godotenv.Load(".active-env"); err != nil {
-		err = godotenv.Load(fmt.Sprintf("%s/.active-env", getRunDir.RunDir()))
+	if err = godotenv.Load(".env.active"); err != nil {
+		err = godotenv.Load(fmt.Sprintf("%s/.env.active", runDir.RunDir()))
 		if err != nil {
 			return err
 		}
 	}
 
-	activeEnv := os.Getenv("active")
+	activeEnv := os.Getenv("ACTIVE")
 
 	if activeEnv == "dev" {
 		if err = godotenv.Load(".env.dev"); err != nil {
-			err = godotenv.Load(fmt.Sprintf("%s/.env.dev", getRunDir.RunDir()))
+			err = godotenv.Load(fmt.Sprintf("%s/.env.dev", runDir.RunDir()))
 			if err != nil {
 				return err
 			}
@@ -28,7 +28,7 @@ func LoadEnv() (err error) {
 
 	if activeEnv == "prod" {
 		if err = godotenv.Load(".env.prod"); err != nil {
-			err = godotenv.Load(fmt.Sprintf("%s/.env.prod", getRunDir.RunDir()))
+			err = godotenv.Load(fmt.Sprintf("%s/.env.prod", runDir.RunDir()))
 			if err != nil {
 				return err
 			}

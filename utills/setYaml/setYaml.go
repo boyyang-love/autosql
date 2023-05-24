@@ -2,7 +2,7 @@ package setYaml
 
 import (
 	"autoSql-cobra/config"
-	"autoSql-cobra/utills/getRunDir"
+	"autoSql-cobra/utills/runDir"
 	"fmt"
 	"github.com/spf13/viper"
 )
@@ -10,7 +10,7 @@ import (
 func SetYaml[T string | []string](key string, value T) (err error) {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.SetConfigFile(fmt.Sprintf("%s/%s.yaml", getRunDir.RunDir(), "config"))
+	viper.SetConfigFile(fmt.Sprintf("%s/%s.yaml", runDir.RunDir(), "config"))
 
 	if err = viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
@@ -21,7 +21,7 @@ func SetYaml[T string | []string](key string, value T) (err error) {
 	}
 
 	viper.Set(key, value)
-	err = viper.WriteConfigAs(fmt.Sprintf("%s/%s.yaml", getRunDir.RunDir(), "config"))
+	err = viper.WriteConfigAs(fmt.Sprintf("%s/%s.yaml", runDir.RunDir(), "config"))
 
 	if err = viper.Unmarshal(&config.Config); err != nil {
 		fmt.Printf("Serialization configuration failed.%s\n", err)

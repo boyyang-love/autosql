@@ -1,7 +1,7 @@
 package config
 
 import (
-	"autoSql-cobra/utills/getRunDir"
+	"autoSql-cobra/utills/runDir"
 	"fmt"
 	"github.com/spf13/viper"
 )
@@ -17,12 +17,10 @@ var Config SqlConfig
 func InitConfig() {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.SetConfigFile(fmt.Sprintf("%s/%s.yaml", getRunDir.RunDir(), "config"))
+	viper.SetConfigFile(fmt.Sprintf("%s/%s.yaml", runDir.RunDir(), "config"))
 
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
-			fmt.Println(err.Error())
-		} else {
 			fmt.Println(err.Error())
 		}
 	}

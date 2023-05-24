@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"autoSql-cobra/utills/getRunDir"
+	"autoSql-cobra/utills/runDir"
 	"fmt"
 	"github.com/spf13/cobra"
 )
@@ -15,7 +15,7 @@ func versionCmd() *cobra.Command {
 		Use: "version",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println("v1.0.0")
-			getRunDir.RunDir()
+			runDir.RunDir()
 		},
 		Short: "get version [autosql version]",
 	}
